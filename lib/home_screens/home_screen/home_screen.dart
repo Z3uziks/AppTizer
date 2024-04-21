@@ -251,24 +251,7 @@ class HomeScreenState extends State<HomeScreen> {
                 edit: "",
               ),
               const SizedBox(height: 40),
-              ListTile(
-                trailing: Icon(
-                  size: 30,
-                  Icons.person_off_outlined,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                title: const Text(style: TextStyle(fontSize: 25), "Logout"),
-                leading: Icon(
-                  size: 30,
-                  Icons.logout,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                onTap: () async {
-                  await AuthServices(_firestore, _auth)
-                      .signOut(context, logoutHelper);
-                },
-              ),
-              const SizedBox(height: 40),
+
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -310,6 +293,28 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 child: const Text(
                     style: TextStyle(fontSize: 18), 'Ver Histórico de Compras'),
+              ),
+              const SizedBox(height: 40),
+              // build a small logout button
+              Container(
+                width: 150,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: ListTile(
+                  title: const Text(style: TextStyle(fontSize: 20), "Logout"),
+                  leading: Icon(
+                    size: 25,
+                    Icons.logout,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  onTap: () async {
+                    await AuthServices(_firestore, _auth)
+                        .signOut(context, logoutHelper);
+                  },
+                ),
               ),
               const SizedBox(height: 20),
             ],
