@@ -42,7 +42,7 @@ class ReservePage extends StatelessWidget {
             const SizedBox(height: 10),
             TextButton(
               onPressed: () {
-                // Implement Cancelar button functionality
+                Navigator.pop(context);
               },
               child: const Text('Cancelar'),
             ),
