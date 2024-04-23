@@ -27,7 +27,7 @@ class ReservePage extends StatelessWidget {
               child: TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  hintText: 'Informe o número de pessoas',
+                  //hintText: 'Informe o nº de pessoas',
                   border: OutlineInputBorder(),
                 ),
               ),
