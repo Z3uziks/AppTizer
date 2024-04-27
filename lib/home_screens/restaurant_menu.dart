@@ -43,7 +43,7 @@ class RestaurantMenu extends StatelessWidget {
   }
 
   Widget buildMenuItem(BuildContext context, String title, IconData icon) {
-     double iconSize = MediaQuery.of(context).size.width * 0.35; // Adjust the multiplier as needed
+     double iconSize = MediaQuery.of(context).size.width * 0.3; // Adjust the multiplier as needed
 
     return GestureDetector(
       onTap: () {
