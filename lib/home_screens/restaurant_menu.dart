@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/reserve_page.dart';
+import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 
 class RestaurantMenu extends StatelessWidget {
   const RestaurantMenu({Key? key}) : super(key: key);
@@ -83,23 +84,4 @@ class RestaurantMenu extends StatelessWidget {
   }
 }
 
-class MenuItemPage extends StatelessWidget {
-  final String title;
 
-  const MenuItemPage({Key? key, required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'This is the page for $title',
-          style: const TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
