@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tastybite/home_screens/menus/payment_time.dart';
 
 class ReservePage extends StatelessWidget {
   const ReservePage({Key? key}) : super(key: key);
@@ -35,7 +36,13 @@ class ReservePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Implement Confirmar button functionality
+                // Redirect to the payment time page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PaymentTime(),
+                  ),
+                );
               },
               child: const Text('Confirmar'),
             ),

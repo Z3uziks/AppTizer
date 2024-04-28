@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/menus/reserve_page.dart';
+import 'package:tastybite/home_screens/menus/reserve_page_people.dart';
 
 class RestaurantMenu extends StatelessWidget {
   const RestaurantMenu({Key? key}) : super(key: key);
