@@ -44,6 +44,8 @@ class RestaurantMenu extends StatelessWidget {
   }
 
   Widget buildMenuItem(BuildContext context, String title, IconData icon) {
+     double iconSize = MediaQuery.of(context).size.width * 0.3; // Adjust the multiplier as needed
+
     return GestureDetector(
       onTap: () {
         // Navigate to a new page here
@@ -64,7 +66,7 @@ class RestaurantMenu extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 150,
+              size: iconSize,
               color: Colors.black,
             ),
             const SizedBox(height: 10),

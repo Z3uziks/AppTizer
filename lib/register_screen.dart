@@ -5,7 +5,7 @@ import 'package:tastybite/util/myuser.dart';
 import 'package:tastybite/login.dart';
 import 'package:tastybite/screens_builder.dart';
 
-enum AccountType { client, deliveryguy }
+enum AccountType { client, manager }
 
 class MyButton extends StatelessWidget {
   const MyButton({super.key, required this.text, required this.onTap});
@@ -100,6 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController pwConfirmController = TextEditingController();
   final TextEditingController nicknameController = TextEditingController();
+  final TextEditingController nameRestaurant = TextEditingController();
 
   @override
   void initState() {
@@ -173,37 +174,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 40),
                 Text(
-                  "Vamos criar a tua conta!",
+                  "Crie a sua conta",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                const SizedBox(height: 20),
-                MyTextField(
-                  hint: "Nickname",
-                  obsecure: false,
-                  controller: nicknameController,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  hint: "Email",
-                  obsecure: false,
-                  controller: emailController,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  hint: "Password",
-                  obsecure: true,
-                  controller: passwordController,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  hint: "Confirmar Password",
-                  obsecure: true,
-                  controller: pwConfirmController,
-                ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 25),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: DropdownButtonFormField<AccountType>(
@@ -227,17 +204,66 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     items: <AccountType>[
                       AccountType.client,
-                      AccountType.deliveryguy,
+                      AccountType.manager,
                     ].map<DropdownMenuItem<AccountType>>((AccountType value) {
                       return DropdownMenuItem<AccountType>(
                         value: value,
                         child: Text(value == AccountType.client
                             ? 'Cliente'
-                            : 'Entregador'),
+                            : 'Gestor de Restaurante'),
                       );
                     }).toList(),
                   ),
                 ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  hint: "Username",
+                  obsecure: false,
+                  controller: nicknameController,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  hint: "Email",
+                  obsecure: false,
+                  controller: emailController,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  hint: "Password",
+                  obsecure: true,
+                  controller: passwordController,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  hint: "Confirmar Password",
+                  obsecure: true,
+                  controller: pwConfirmController,
+                ),
+                const SizedBox(height: 10),
+                if (_selectedAccountType != AccountType.client)
+                  Column(
+                    children: [
+                      Text(
+                        "O seu restaurante:",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      MyTextField(
+                        hint: "Código de Restaurante",
+                        obsecure: false,
+                        controller: nameRestaurant,
+                      ),
+                      const SizedBox(height: 10),
+                      MyTextField(
+                        hint: "Nome do Restaurante",
+                        obsecure: false,
+                        controller: nameRestaurant,
+                      ),
+                    ],
+                  ),
                 const SizedBox(height: 25),
                 MyButton(
                   text: "Criar Conta",
@@ -249,7 +275,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       nicknameController.text.trim(),
                       _selectedAccountType == AccountType.client
                           ? "client"
-                          : "deliveryguy",
+                          : "manager",
                       context,
                     );
                   },

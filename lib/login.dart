@@ -139,7 +139,7 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 190),
+            const SizedBox(height: 100),
             Icon(
               Icons.message,
               color: Theme.of(context).colorScheme.primary,
@@ -149,14 +149,14 @@ class LoginPage extends StatelessWidget {
               height: 40,
             ),
             Text(
-              "Bem Vindo ao TastyBite",
+              "Bem vindo ao AppTizer!",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 20,
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 100,
             ),
             MyTextField(
               hint: "Email",
