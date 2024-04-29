@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/menus/reserve_table.dart';
 
 class RestaurantMenu extends StatelessWidget {
@@ -6,10 +7,10 @@ class RestaurantMenu extends StatelessWidget {
 
   // Mapping between menu item titles and page routes
   static final Map<String, Widget> menuRoutes = {
-    "Pratos": const MenuItemPage(title: "Pratos"),
+    "Pratos": MenuItemPage(title: "Pratos"),
     "Reservar": const ReservePage(),
-    "Bebidas": const MenuItemPage(title: "Bebidas"),
-    "Detalhes": const MenuItemPage(title: "Detalhes"),
+    "Bebidas": MenuItemPage(title: "Bebidas"),
+    "Detalhes": MenuItemPage(title: "Detalhes"), // Meteste (Gabriel) para o MenuItemPage, sendo essa a pagina errada, mas por enquanto deixa-se assim
   };
 
   @override
@@ -85,23 +86,4 @@ class RestaurantMenu extends StatelessWidget {
   }
 }
 
-class MenuItemPage extends StatelessWidget {
-  final String title;
 
-  const MenuItemPage({Key? key, required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'This is the page for $title',
-          style: const TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
