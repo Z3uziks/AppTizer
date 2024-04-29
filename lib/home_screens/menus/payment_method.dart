@@ -33,7 +33,11 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 );
               },
-              child: Image.asset('assets/payments/mbway.png'),
+              child: Container(
+                width: 100,
+                height: 100,
+                child: Image.asset('assets/payments/mbway.png'),
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -46,7 +50,11 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('PAYPAL'),
+              child: Container(
+                width: 100,
+                height: 100,
+                child: Image.asset('assets/payments/paypal.png'),
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -59,7 +67,16 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 );
               },
-              child: const Icon(Icons.credit_card),
+              child: Container(
+                width: 100,
+                height: 100,
+                child: const Row(
+                  children: [
+                    Icon(Icons.credit_card, size: 40),
+                    Text(' Cartão', style: TextStyle(fontSize: 18)),
+                  ],
+                ),
+              ),
             ),
             const SizedBox(height: 30),
             TextButton(
