@@ -7,10 +7,10 @@ class RestaurantMenu extends StatelessWidget {
 
   // Mapping between menu item titles and page routes
   static final Map<String, Widget> menuRoutes = {
-    "Pratos": const MenuItemPage(title: "Pratos"),
+    "Pratos": MenuItemPage(title: "Pratos"),
     "Reservar": const ReservePage(),
-    "Bebidas": const MenuItemPage(title: "Bebidas"),
-    "Detalhes": const MenuItemPage(title: "Detalhes"),
+    "Bebidas": MenuItemPage(title: "Bebidas"),
+    "Detalhes": MenuItemPage(title: "Detalhes"), // Meteste (Gabriel) para o MenuItemPage, sendo essa a pagina errada, mas por enquanto deixa-se assim
   };
 
   @override
