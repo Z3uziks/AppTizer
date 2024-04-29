@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentMethod extends StatelessWidget {
   const PaymentMethod({Key? key}) : super(key: key);
@@ -24,14 +25,26 @@ class PaymentMethod extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Implement MBWay payment
+                // Redirect to the table confirmation page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TableConfirmation(),
+                  ),
+                );
               },
-              child: const Text('MB WAY'),
+              child: Image.asset('assets/payments/mbway.png'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Implement PayPal payment
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TableConfirmation(),
+                  ),
+                );
               },
               child: const Text('PAYPAL'),
             ),
@@ -39,8 +52,14 @@ class PaymentMethod extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Implement Cartão payment
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TableConfirmation(),
+                  ),
+                );
               },
-              child: const Text('CARTÃO DE CRÉDITO'),
+              child: const Icon(Icons.credit_card),
             ),
             const SizedBox(height: 30),
             TextButton(

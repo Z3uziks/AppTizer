@@ -77,6 +77,7 @@ flutter:
     - assets/
     - assets/imgs/
     - assets/lottie/
+    - assets/payments/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

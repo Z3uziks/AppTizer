@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/payment_method.dart';
+import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentTime extends StatelessWidget {
   const PaymentTime({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class PaymentTime extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Quando pretende pagar?',
+              'Onde pretende pagar?',
               style: TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 30),
@@ -42,7 +43,7 @@ class PaymentTime extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PaymentMethod(),
+                    builder: (context) => const TableConfirmation(),
                   ),
                 );
               },
