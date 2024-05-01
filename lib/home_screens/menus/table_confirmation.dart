@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/restaurant_menu.dart';
 
 class TableConfirmation extends StatelessWidget {
@@ -25,14 +26,20 @@ class TableConfirmation extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Review reservation
+                // Redirect to menuitemspage.dart
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MenuItemPage(title: '',),
+                  ),
+                );
               },
-              child: const Text('Rever Reserva'),
+              child: const Text('Reservar Pratos'),
             ),
             const SizedBox(height: 30),
             TextButton(
               onPressed: () {
-                // Redirect to the menu page
+                // Redirect to restaurant_menu.dart
                 Navigator.push(
                   context,
                   MaterialPageRoute(

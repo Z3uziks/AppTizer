@@ -83,7 +83,7 @@ class PaymentMethod extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancelar'),
+              child: const Text('Voltar Atrás'),
             ),
           ],
         ),
