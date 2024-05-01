@@ -5,6 +5,7 @@ import 'package:tastybite/splash.dart';
 import 'package:tastybite/util/myuser.dart';
 import 'package:tastybite/util/wallet.dart';
 import 'package:provider/provider.dart';
+//import 'package:tastybite/home_screens/home_screen/old_home_screen.dart';
 import 'package:tastybite/home_screens/home_screen/home_screen.dart';
 import 'package:tastybite/home_screens/menu_screen.dart';
 import 'package:tastybite/home_screens/restaurant_menu.dart';
@@ -35,7 +36,8 @@ class ScreenBuilder extends StatelessWidget {
       //MenuScreen(user: user),
       const RestaurantMenu(),
       const OrdersStatusScreen(),
-      HomeScreen(user: user),
+      //HomeScreen(user: user),
+      const HomeScreen(),
       const WalletScreen(),
       const MessengerScreen(),
     ];
