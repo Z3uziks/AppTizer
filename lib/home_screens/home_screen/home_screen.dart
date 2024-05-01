@@ -7,9 +7,10 @@ import 'package:tastybite/home_screens/restaurant_menu.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  @override 
+  @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
 class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     bool isDark = false;
@@ -18,11 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
       'Dolce Pizzeria Ristorante',
     ];
 
-
     return Scaffold(
       body: Stack(
         children: [
-          
           FlutterMap(
             options: MapOptions(
               center: LatLng(40.6412, -8.65362),
