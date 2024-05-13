@@ -245,6 +245,7 @@ class _AddItemState extends State<AddItem> {
                       description: _description,
                       ingredients: _ingredients,
                       rating: 0,
+                      newitem: true,
                       cookTime: '${_cookTime}m',
                       price: "€${_price.toStringAsFixed(2)}",
                       allergens: _selectedAllergens.join(', '),

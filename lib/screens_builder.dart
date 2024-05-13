@@ -27,27 +27,41 @@ class Helper extends StatelessWidget {
 
 class ScreenBuilder extends StatelessWidget {
   final MyUser user;
-
+  
   ScreenBuilder({super.key, required this.user});
 
   final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 2);
+      PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
-    return [
-      //MenuScreen(user: user),
-      //const RestaurantMenu(),
-      const RestaurantMainPage(),
-      const RestaurantMenuItems(title: 'Pratos',),
-      //HomeScreen(user: user),
-      const HomeScreen(),
+    print("user: ${user.name}");
+    if(user.name != 'gestor'){
+      return [
+        //MenuScreen(user: user),
+        //const RestaurantMenu(),
+        const HomeScreen(),
+        const OrdersStatusScreen(),
+        //const RestaurantMenuItems(title: 'Pratos',),
+        //HomeScreen(user: user),
+        /*
       const WalletScreen(),
       const MessengerScreen(),
-    ];
+      */
+      ];
+    }
+    else{
+      return [
+        const RestaurantMainPage(),
+        const RestaurantMenuItems(title: 'Pratos'),
+      ];
+    }
+    
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
+    
     return [
+      /*
       PersistentBottomNavBarItem(
         icon: const Icon(
           Icons.menu,
@@ -56,14 +70,7 @@ class ScreenBuilder extends StatelessWidget {
         ),
         title: ("Menu"),
       ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(
-          Icons.shopping_cart,
-          size: 35,
-          weight: 20,
-        ),
-        title: ("Carrinho"),
-      ),
+      */
       PersistentBottomNavBarItem(
         icon: const Icon(
           Icons.home,
@@ -72,6 +79,25 @@ class ScreenBuilder extends StatelessWidget {
         ),
         title: ("Home"),
       ),
+      user.name != 'gestor'?
+       PersistentBottomNavBarItem(
+          icon: const Icon(
+            Icons.shopping_cart,
+            size: 35,
+            weight: 20,
+          ),
+          title: ("Carrinho"),
+        )
+      : PersistentBottomNavBarItem(
+          icon: const Icon(
+            Icons.restaurant,
+            size: 35,
+            weight: 20,
+          ),
+          title: ("Restaurante"),
+        ),
+      
+      /*
       PersistentBottomNavBarItem(
         icon: const Icon(
           Icons.account_balance_wallet,
@@ -87,7 +113,7 @@ class ScreenBuilder extends StatelessWidget {
           weight: 20,
         ),
         title: ("Mensagens"),
-      ),
+      ),*/
     ];
   }
 

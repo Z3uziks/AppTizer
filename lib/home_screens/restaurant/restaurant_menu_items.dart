@@ -25,16 +25,67 @@ class RestaurantMenuItems extends StatefulWidget {
       name: 'Grelhado de Carne',
       description: 'Carne grelhada com salada e batata frita.',
       ingredients: 'Carne, alface, tomate, batata',
-      rating: 4.2,
+      rating: 5,
       cookTime: "45m",
       newitem: false,
       price: "€30.00",
       allergens: "Glúten, Lactose",
       nutrition:
           "Calorias: 350kcal, Proteínas: 30g, Carboidratos: 35g, Gorduras: 15g",
-      image: 'assets/grelhado.jpg',
+      image: 'assets/mediterraneo_crop.jpg',
     ),
-    // Adicione mais itens conforme necessário
+    MenuItem(
+      name: 'Grelhado de Peixe',
+      description: 'Peixe grelhado com salada e batata cozida.',
+      ingredients: 'Peixe, alface, tomate, batata',
+      rating: 4.0,
+      cookTime: "40m",
+      newitem: false,
+      price: "€20.00",
+      allergens: "Glúten, Lactose",
+      nutrition:
+          "Calorias: 250kcal, Proteínas: 20g, Carboidratos: 25g, Gorduras: 10g",
+      image: 'assets/peixe.jpg',
+    ),
+    MenuItem(
+      name: 'Grelhado de Vegetais',
+      description: 'Vegetais grelhados com salada e arroz.',
+      ingredients: 'Vegetais, alface, tomate, arroz',
+      rating: 2,
+      cookTime: "30m",
+      newitem: true,
+      price: "€15.00",
+      allergens: "Glúten, Lactose",
+      nutrition:
+          "Calorias: 200kcal, Proteínas: 15g, Carboidratos: 20g, Gorduras: 5g",
+      image: 'assets/vegetais.jpg',
+    ),
+    MenuItem(
+      name: 'Francesinha',
+      description: 'Francesinha com batata frita.',
+      ingredients: 'Pão, salsicha, bife, queijo, molho',
+      rating: 3,
+      cookTime: "45m",
+      newitem: false,
+      price: "€10.00",
+      allergens: "Glúten, Lactose",
+      nutrition:
+          "Calorias: 400kcal, Proteínas: 30g, Carboidratos: 40g, Gorduras: 20g",
+      image: 'assets/francesinha.jpg',
+    ),
+    MenuItem(
+      name: 'Lasanha',
+      description: 'Lasanha de carne com molho de tomate.',
+      ingredients: 'Massa, carne, queijo, molho',
+      rating: 5.0,
+      cookTime: "40m",
+      newitem: false,
+      price: "€12.00",
+      allergens: "Glúten, Lactose",
+      nutrition:
+          "Calorias: 350kcal, Proteínas: 25g, Carboidratos: 35g, Gorduras: 15g",
+      image: 'assets/lasanha.jpg',
+    )
   ];
 
   static final List<MenuItem> itemsBebidas = [
@@ -50,7 +101,7 @@ class RestaurantMenuItems extends StatefulWidget {
       allergens: "Glúten, Lactose",
       nutrition:
           "Calorias: 100kcal, Proteínas: 0g, Carboidratos: 25g, Gorduras: 0g",
-      image: 'assets/grelhado.jpg',
+      image: 'assets/cocacola.jpeg',
     ),
     MenuItem(
       name: 'Sumo de Laranja',
@@ -64,7 +115,49 @@ class RestaurantMenuItems extends StatefulWidget {
       allergens: "Glúten, Lactose",
       nutrition:
           "Calorias: 150kcal, Proteínas: 1g, Carboidratos: 30g, Gorduras: 0g",
-      image: 'assets/grelhado.jpg',
+      image: 'assets/sumolaranja.jpeg',
+    ),
+    MenuItem(
+      name: 'Água',
+      description: 'Água mineral.',
+      ingredients: 'Água',
+      rating: 5,
+      cookTime: "40m",
+      qtd: "500ml",
+      newitem: false,
+      price: "€1.00",
+      allergens: "Glúten, Lactose",
+      nutrition:
+          "Calorias: 0kcal, Proteínas: 0g, Carboidratos: 0g, Gorduras: 0g",
+      image: 'assets/agua.jpg',
+    ),
+    MenuItem(
+      name: 'Cerveja',
+      description: 'Cerveja gelada.',
+      ingredients: 'Água, cevada, lúpulo',
+      rating: 4.0,
+      cookTime: "30m",
+      qtd: "330ml",
+      newitem: true,
+      price: "€2.50",
+      allergens: "Glúten, Lactose",
+      nutrition:
+          "Calorias: 150kcal, Proteínas: 1g, Carboidratos: 15g, Gorduras: 0g",
+      image: 'assets/cerveja.jpg',
+    ),
+    MenuItem(
+      name: 'Vinho Tinto',
+      description: 'Vinho tinto de qualidade.',
+      ingredients: 'Uvas, água, açúcar',
+      rating: 3.5,
+      cookTime: "45m",
+      qtd: "750ml",
+      newitem: false,
+      price: "€15.00",
+      allergens: "Glúten, Lactose",
+      nutrition:
+          "Calorias: 200kcal, Proteínas: 1g, Carboidratos: 20g, Gorduras: 0g",
+      image: 'assets/vinhotinto.jpg',
     ),
   ];
 
