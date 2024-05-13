@@ -55,11 +55,11 @@ class ScreenBuilder extends StatelessWidget {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(
-          Icons.delivery_dining,
+          Icons.shopping_cart,
           size: 35,
           weight: 20,
         ),
-        title: ("Orders"),
+        title: ("Carrinho"),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(

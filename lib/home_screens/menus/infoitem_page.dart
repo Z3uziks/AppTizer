@@ -1,31 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
+import 'package:tastybite/home_screens/orders_status_screen.dart';
 
 class InfoPage extends StatefulWidget {
   final MenuItem item;
+  final int mquantity;
+  // quantity is not mandatory
 
-  const InfoPage({Key? key, required this.item}) : super(key: key);
+  const InfoPage({Key? key, required this.item, this.mquantity = 0}): super(key: key);
 
   @override
   _InfoPageState createState() => _InfoPageState();
 }
 
 class _InfoPageState extends State<InfoPage> {
+  
   int quantity = 1;
   double total = 0;
+  int added = 0;
 
   @override
   void initState() {
     super.initState();
+    if (widget.mquantity > 0) {
+      quantity = widget.mquantity;
+    }
     total = adjustprice(widget.item.price);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // icon of Carrinho to redirect to the cart
       appBar: AppBar(
         title: Text("Informações do Produto"),
         backgroundColor: Colors.lightBlue,
+        actions: <Widget>[
+          Text(
+            "$added",
+            style: const TextStyle(fontSize: 20),
+          ),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const OrdersStatusScreen()),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -100,17 +124,17 @@ class _InfoPageState extends State<InfoPage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Quantidade",
                         style: TextStyle(
                             fontWeight: FontWeight.normal, fontSize: 25),
@@ -135,7 +159,7 @@ class _InfoPageState extends State<InfoPage> {
                                 ),
                               ),
                               Text(
-                                "$quantity",
+                                '$quantity',
                                 style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 18),
@@ -169,7 +193,7 @@ class _InfoPageState extends State<InfoPage> {
                     children: <Widget>[
                       Container(
                         height: 40,
-                        width: MediaQuery.of(context).size.width * 0.5,
+                        width: MediaQuery.of(context).size.width * 0.8,
                         child: TextButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
@@ -180,12 +204,35 @@ class _InfoPageState extends State<InfoPage> {
                               ),
                             ),
                           ),
-                          child: Text(
-                            "Place Order",
+                          child: const Text(
+                            "Adicionar ao Carrinho",
                             style: TextStyle(
                                 color: Colors.white, fontSize: 22),
                           ),
-                          onPressed: () {},
+                          // alert dialog
+                          onPressed: () {
+                            setState(() {
+                              added = added + 1;
+                            });
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text("Produto Adicionado"),
+                                  content: const Text(
+                                      "O produto foi adicionado ao carrinho com sucesso!"),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Fechar"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],
