@@ -181,11 +181,13 @@ class _InfoPageState extends State<InfoPage> {
                             ),
                           ),
                           child: Text(
-                            "Place Order",
+                            "Add to Cart",
                             style: TextStyle(
                                 color: Colors.white, fontSize: 22),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            // Redirect to the cart page (not finished yet)
+                          },
                         ),
                       ),
                     ],

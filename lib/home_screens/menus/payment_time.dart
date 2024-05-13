@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/menus/payment_method.dart';
+import 'package:tastybite/home_screens/menus/order_confirmation.dart';
 import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentTime extends StatelessWidget {
@@ -30,7 +30,7 @@ class PaymentTime extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PaymentMethod(),
+                    builder: (context) => const OrderConfirmation(),
                   ),
                 );
               },
