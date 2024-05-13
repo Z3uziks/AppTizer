@@ -23,22 +23,25 @@ class RestaurantMenu extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: [
-          /*
-          buildMenuItem(context, "Entradas", Icons.food_bank),
-          buildMenuItem(context, "Pratos do dia", Icons.restaurant_menu),
-          buildMenuItem(context, "Outros pratos", Icons.fastfood),
-          buildMenuItem(context, "Bebidas", Icons.local_drink),
-          buildMenuItem(context, "Sobremesas", Icons.cake),
-          buildMenuItem(context, "Acompanhamentos", Icons.local_dining),
-          */
-          buildMenuItem(context, "Pratos", Icons.food_bank),
-          buildMenuItem(context, "Reservar", Icons.event),
-          buildMenuItem(context, "Bebidas", Icons.local_drink),
-          buildMenuItem(context, "Detalhes", Icons.info),
-        ],
+      body: Center(
+      child: GridView.count(
+        shrinkWrap: true,
+          crossAxisCount: 2,
+          children: [
+            /*
+            buildMenuItem(context, "Entradas", Icons.food_bank),
+            buildMenuItem(context, "Pratos do dia", Icons.restaurant_menu),
+            buildMenuItem(context, "Outros pratos", Icons.fastfood),
+            buildMenuItem(context, "Bebidas", Icons.local_drink),
+            buildMenuItem(context, "Sobremesas", Icons.cake),
+            buildMenuItem(context, "Acompanhamentos", Icons.local_dining),
+            */
+            buildMenuItem(context, "Pratos", Icons.food_bank),
+            buildMenuItem(context, "Reservar", Icons.event),
+            buildMenuItem(context, "Bebidas", Icons.local_drink),
+            buildMenuItem(context, "Detalhes", Icons.info),
+          ],
+        ),
       ),
     );
   }
@@ -55,7 +58,7 @@ class RestaurantMenu extends StatelessWidget {
         );
       },
       child: Container(
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.blue.shade200,

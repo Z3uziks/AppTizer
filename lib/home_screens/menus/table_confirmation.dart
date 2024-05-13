@@ -30,11 +30,24 @@ class TableConfirmation extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MenuItemPage(title: '',),
+                    builder: (context) => const MenuItemPage(title: 'Pratos',),
                   ),
                 );
               },
               child: const Text('Reservar Pratos'),
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                // Redirect to menuitemspage.dart
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MenuItemPage(title: "Bebidas",),
+                  ),
+                );
+              },
+              child: const Text('Reservar Bebidas'),
             ),
             const SizedBox(height: 30),
             TextButton(
