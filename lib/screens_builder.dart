@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:tastybite/home_screens/messenger_screen/messenger_screen.dart';
+import 'package:tastybite/home_screens/restaurant/restaurant_menu_items.dart';
 import 'package:tastybite/splash.dart';
 import 'package:tastybite/util/myuser.dart';
 import 'package:tastybite/util/wallet.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:tastybite/home_screens/home_screen/home_screen.dart';
 import 'package:tastybite/home_screens/menu_screen.dart';
 import 'package:tastybite/home_screens/restaurant_menu.dart';
+import 'package:tastybite/home_screens/restaurant/main_page.dart';
 import 'package:tastybite/home_screens/wallet_screen.dart';
 import 'package:tastybite/home_screens/orders_status_screen.dart';
 import 'package:tastybite/util/logout.dart';
@@ -25,26 +27,41 @@ class Helper extends StatelessWidget {
 
 class ScreenBuilder extends StatelessWidget {
   final MyUser user;
-
+  
   ScreenBuilder({super.key, required this.user});
 
   final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 2);
+      PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
-    return [
-      //MenuScreen(user: user),
-      const RestaurantMenu(),
-      const OrdersStatusScreen(),
-      //HomeScreen(user: user),
-      const HomeScreen(),
+    print("user: ${user.name}");
+    if(user.name != 'gestor'){
+      return [
+        //MenuScreen(user: user),
+        //const RestaurantMenu(),
+        const HomeScreen(),
+        const OrdersStatusScreen(),
+        //const RestaurantMenuItems(title: 'Pratos',),
+        //HomeScreen(user: user),
+        /*
       const WalletScreen(),
       const MessengerScreen(),
-    ];
+      */
+      ];
+    }
+    else{
+      return [
+        const RestaurantMainPage(),
+        const RestaurantMenuItems(title: 'Pratos'),
+      ];
+    }
+    
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
+    
     return [
+      /*
       PersistentBottomNavBarItem(
         icon: const Icon(
           Icons.menu,
@@ -53,14 +70,7 @@ class ScreenBuilder extends StatelessWidget {
         ),
         title: ("Menu"),
       ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(
-          Icons.delivery_dining,
-          size: 35,
-          weight: 20,
-        ),
-        title: ("Orders"),
-      ),
+      */
       PersistentBottomNavBarItem(
         icon: const Icon(
           Icons.home,
@@ -69,6 +79,25 @@ class ScreenBuilder extends StatelessWidget {
         ),
         title: ("Home"),
       ),
+      user.name != 'gestor'?
+       PersistentBottomNavBarItem(
+          icon: const Icon(
+            Icons.shopping_cart,
+            size: 35,
+            weight: 20,
+          ),
+          title: ("Carrinho"),
+        )
+      : PersistentBottomNavBarItem(
+          icon: const Icon(
+            Icons.restaurant,
+            size: 35,
+            weight: 20,
+          ),
+          title: ("Restaurante"),
+        ),
+      
+      /*
       PersistentBottomNavBarItem(
         icon: const Icon(
           Icons.account_balance_wallet,
@@ -84,7 +113,7 @@ class ScreenBuilder extends StatelessWidget {
           weight: 20,
         ),
         title: ("Mensagens"),
-      ),
+      ),*/
     ];
   }
 

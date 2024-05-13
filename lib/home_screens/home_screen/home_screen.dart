@@ -29,63 +29,23 @@ class _HomeScreenState extends State<HomeScreen> {
               interactiveFlags: ~InteractiveFlag.pinchZoom |
                   ~InteractiveFlag
                       .doubleTapZoom, // Disable pinch and double-tap zoom
+              
             ),
+
             children: [
+
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 userAgentPackageName: 'com.example.app',
               ),
-              SearchAnchor(
-                  builder: (BuildContext context, SearchController controller) {
-                return SearchBar(
-                  controller: controller,
-                  padding: const MaterialStatePropertyAll<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 16.0)),
-                  onTap: () {
-                    controller.openView();
-                  },
-                  onChanged: (_) {
-                    controller.openView();
-                  },
-                  leading: const Icon(Icons.search),
-                  trailing: <Widget>[
-                    Tooltip(
-                      message: 'Change brightness mode',
-                      child: IconButton(
-                        isSelected: isDark,
-                        onPressed: () {
-                          setState(() {
-                            isDark = !isDark;
-                          });
-                        },
-                        icon: const Icon(Icons.wb_sunny_outlined),
-                        selectedIcon: const Icon(Icons.brightness_2_outlined),
-                      ),
-                    )
-                  ],
-                );
-              }, suggestionsBuilder:
-                      (BuildContext context, SearchController controller) {
-                return List<ListTile>.generate(suggestions.length, (int index) {
-                  final String item = suggestions[index];
-                  return ListTile(
-                    leading: Icon(Icons.location_on),
-                    title: Text(item),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RestaurantMenu()),
-                      );
-                    },
-                  );
-                });
-              }),
+              
               MarkerLayer(
+                
                 markers: [
                   Marker(
                     width: 380,
                     point: LatLng(40.638436419064966, -8.65123786779018),
+                    anchorPos: AnchorPos.align(AnchorAlign.center),
                     builder: (context) => const Row(
                       children: [
                         Icon(
@@ -120,7 +80,42 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
+          
+          Positioned(
+             top: 5, left: 0, right: 0,
+             child: SearchAnchor(
+              builder: (BuildContext context, SearchController controller) {
+            return SearchBar(
+              controller: controller,
+              padding: const MaterialStatePropertyAll<EdgeInsets>(
+                  EdgeInsets.symmetric(horizontal: 16.0)),
+              onTap: () {
+                controller.openView();
+              },
+              onChanged: (_) {
+                controller.openView();
+              },
+              leading: const Icon(Icons.search),
+            );
+          }, suggestionsBuilder:
+                  (BuildContext context, SearchController controller) {
+            return List<ListTile>.generate(suggestions.length, (int index) {
+              final String item = suggestions[index];
+              return ListTile(
+                leading: Icon(Icons.location_on),
+                title: Text(item),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RestaurantMenu()),
+                  );
+                },
+              );
+            });
+          }),),
+          
         ],
+
       ),
     );
   }
