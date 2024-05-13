@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tastybite/home_screens/menus/plate_confirmation.dart';
 import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentMethod extends StatelessWidget {
@@ -29,7 +30,7 @@ class PaymentMethod extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TableConfirmation(),
+                    builder: (context) => const PlateConfirmation(),
                   ),
                 );
               },
@@ -46,7 +47,7 @@ class PaymentMethod extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TableConfirmation(),
+                    builder: (context) => const PlateConfirmation(),
                   ),
                 );
               },
@@ -63,7 +64,7 @@ class PaymentMethod extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TableConfirmation(),
+                    builder: (context) => const PlateConfirmation(),
                   ),
                 );
               },

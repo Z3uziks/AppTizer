@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/restaurant_menu.dart';
 
-class TableConfirmation extends StatelessWidget {
-  const TableConfirmation({Key? key}) : super(key: key);
+class PlateConfirmation extends StatelessWidget {
+  const PlateConfirmation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Reservar',
+          'Comprar',
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.blue,
@@ -20,34 +20,8 @@ class TableConfirmation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Mesa reservada!',
+              'Pratos reservados!',
               style: TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                // Redirect to menuitemspage.dart
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MenuItemPage(title: 'Pratos',),
-                  ),
-                );
-              },
-              child: const Text('Reservar Pratos'),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                // Redirect to menuitemspage.dart
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MenuItemPage(title: "Bebidas",),
-                  ),
-                );
-              },
-              child: const Text('Reservar Bebidas'),
             ),
             const SizedBox(height: 30),
             TextButton(

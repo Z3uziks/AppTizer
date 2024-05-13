@@ -33,7 +33,7 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       // icon of Carrinho to redirect to the cart
       appBar: AppBar(
-        title: Text("Informações do Produto"),
+        title: const Text("Informações do Produto"),
         backgroundColor: Colors.lightBlue,
         actions: <Widget>[
           Text(

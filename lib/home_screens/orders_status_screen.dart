@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tastybite/home_screens/home_screen/home_screen.dart';
 import 'package:tastybite/home_screens/menus/infoitem_page.dart';
+import 'package:tastybite/home_screens/menus/order_confirmation.dart';
+import 'package:tastybite/home_screens/menus/payment_method.dart';
 import 'package:tastybite/services/locator_service.dart';
 import 'package:tastybite/home_screens/order_page.dart';
 import 'package:tastybite/home_screens/rounded_container.dart';
@@ -109,7 +111,7 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()), // Altera aqui santolas
+            MaterialPageRoute(builder: (context) => OrderConfirmation()), // Altera aqui santolas
           );
         },
         child: const Icon(Icons.paid,size: 30),

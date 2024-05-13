@@ -69,7 +69,7 @@ class OrderConfirmation extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                   const Text(
-                    'Coca-Cola:                    3',
+                    'Vazio',
                     style: TextStyle(fontSize: 20),
                   ),
                   ],
@@ -78,7 +78,7 @@ class OrderConfirmation extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             const Text(
-              'Total: 50,00 €',
+              'Total: 110,00 €',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30),
@@ -93,6 +93,7 @@ class OrderConfirmation extends StatelessWidget {
               },
               child: const Text('Confirmar Compra'),
             ),
+            const SizedBox(height: 15),
             TextButton(
               onPressed: () {
                 Navigator.push(
