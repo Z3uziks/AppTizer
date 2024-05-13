@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:tastybite/home_screens/messenger_screen/messenger_screen.dart';
+import 'package:tastybite/home_screens/restaurant/restaurant_menu_items.dart';
 import 'package:tastybite/splash.dart';
 import 'package:tastybite/util/myuser.dart';
 import 'package:tastybite/util/wallet.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:tastybite/home_screens/home_screen/home_screen.dart';
 import 'package:tastybite/home_screens/menu_screen.dart';
 import 'package:tastybite/home_screens/restaurant_menu.dart';
+import 'package:tastybite/home_screens/restaurant/main_page.dart';
 import 'package:tastybite/home_screens/wallet_screen.dart';
 import 'package:tastybite/home_screens/orders_status_screen.dart';
 import 'package:tastybite/util/logout.dart';
@@ -34,8 +36,9 @@ class ScreenBuilder extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       //MenuScreen(user: user),
-      const RestaurantMenu(),
-      const OrdersStatusScreen(),
+      //const RestaurantMenu(),
+      const RestaurantMainPage(),
+      const RestaurantMenuItems(title: 'Pratos',),
       //HomeScreen(user: user),
       const HomeScreen(),
       const WalletScreen(),

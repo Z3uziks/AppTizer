@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/payment_time.dart';
+import 'package:flutter/services.dart'; 
 
 class ReservePage extends StatelessWidget {
   const ReservePage({Key? key}) : super(key: key);
@@ -23,9 +24,12 @@ class ReservePage extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 20),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: TextField(
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly // Allow only digits
+                ],
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   //hintText: 'Informe o nº de pessoas',
