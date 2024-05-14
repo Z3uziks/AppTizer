@@ -8,7 +8,7 @@ class RestaurantMenu extends StatelessWidget {
   // Mapping between menu item titles and page routes
   static final Map<String, Widget> menuRoutes = {
     "Pratos": MenuItemPage(title: "Pratos"),
-    "Reservar": const ReservePage(),
+    "Mesas": const ReservePage(),
     "Bebidas": MenuItemPage(title: "Bebidas"),
     "Detalhes": MenuItemPage(title: "Detalhes"), // Meteste (Gabriel) para o MenuItemPage, sendo essa a pagina errada, mas por enquanto deixa-se assim
   };
@@ -37,7 +37,7 @@ class RestaurantMenu extends StatelessWidget {
             buildMenuItem(context, "Acompanhamentos", Icons.local_dining),
             */
             buildMenuItem(context, "Pratos", Icons.food_bank),
-            buildMenuItem(context, "Reservar", Icons.event),
+            buildMenuItem(context, "Mesas", Icons.event),
             buildMenuItem(context, "Bebidas", Icons.local_drink),
             buildMenuItem(context, "Detalhes", Icons.info),
           ],
