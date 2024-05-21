@@ -178,6 +178,25 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
         ),
         backgroundColor: Colors.blue,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          // Navigate to AddDishPage and wait for a result
+          final newDish = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddItem()),
+          );
+          // Check if a new dish was added
+          if (newDish != null) {
+            // Add the new dish to the menu
+            // For example, you can add it to the itemsPratos list
+            setState(() {
+              RestaurantMenuItems.itemsPratos.add(newDish);
+            });
+          }
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(5),
         child: ListView.builder(
