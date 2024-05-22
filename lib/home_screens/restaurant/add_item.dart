@@ -20,10 +20,10 @@ class _AddItemState extends State<AddItem> {
   String _cookTime = '';
   double _price = 0.0;
   List<String> _selectedAllergens = [];
-  double _calories = 0.0;
-  double _proteins = 0.0;
-  double _carbohydrates = 0.0;
-  double _fats = 0.0;
+  double _calories = -1.0;
+  double _proteins = -1.0;
+  double _carbohydrates = -1.0;
+  double _fats = -1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -174,14 +174,8 @@ class _AddItemState extends State<AddItem> {
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
                 ],
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor insira as calorias do prato';
-                  }
-                  return null;
-                },
                 onSaved: (value) {
-                  _calories = double.parse(value!);
+                  _calories = value==''? _calories : double.parse(value!);
                 },
               ),
               TextFormField(
@@ -190,14 +184,8 @@ class _AddItemState extends State<AddItem> {
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
                 ],
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor insira as proteínas do prato';
-                  }
-                  return null;
-                },
                 onSaved: (value) {
-                  _proteins = double.parse(value!);
+                  _proteins = value==''? _proteins: double.parse(value!);
                 },
               ),
               TextFormField(
@@ -206,14 +194,9 @@ class _AddItemState extends State<AddItem> {
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
                 ],
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor insira os carboidratos do prato';
-                  }
-                  return null;
-                },
+                
                 onSaved: (value) {
-                  _carbohydrates = double.parse(value!);
+                  _carbohydrates = value==''? _carbohydrates : double.parse(value!);
                 },
               ),
               TextFormField(
@@ -222,14 +205,8 @@ class _AddItemState extends State<AddItem> {
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
                 ],
                 keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor insira as gorduras do prato';
-                  }
-                  return null;
-                },
                 onSaved: (value) {
-                  _fats = double.parse(value!);
+                  _fats = value==''? _fats : double.parse(value!);
                 },
               ),
               SizedBox(height: 20),
@@ -249,7 +226,7 @@ class _AddItemState extends State<AddItem> {
                       cookTime: '${_cookTime}m',
                       price: "€${_price.toStringAsFixed(2)}",
                       allergens: _selectedAllergens.join(', '),
-                      nutrition: 'Calorias: ${_calories}kcal, Proteína: ${_proteins}g, Carboidratos: ${_carbohydrates}g, Gorduras: ${_fats}g',
+                      nutrition: buildNutritionString(),
                       image: 'assets/grelhado.jpg',
                     );
                     Navigator.pop(context, newDish);  
@@ -264,4 +241,14 @@ class _AddItemState extends State<AddItem> {
     );
   }
   
+  String buildNutritionString() {
+    List<String> components = [];
+
+    if (_calories >= 0) components.add('Calorias: ${_calories}kcal');
+    if (_proteins >= 0) components.add('Proteína: ${_proteins}g');
+    if (_carbohydrates >= 0) components.add('Carboidratos: ${_carbohydrates}g');
+    if (_fats >= 0) components.add('Gorduras: ${_fats}g');
+
+    return components.join(', ');
+  }
 }

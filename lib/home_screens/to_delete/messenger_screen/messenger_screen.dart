@@ -3,7 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tastybite/services/locator_service.dart';
 import 'package:tastybite/services/auth_service.dart';
 import 'package:tastybite/services/chat_services.dart';
-import 'package:tastybite/home_screens/messenger_screen/chatpage.dart';
+import 'package:tastybite/home_screens/to_delete/messenger_screen/chatpage.dart';
 
 class UserTile extends StatelessWidget {
   const UserTile({super.key, required this.text, required this.onTap});

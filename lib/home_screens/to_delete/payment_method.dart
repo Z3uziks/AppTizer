@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/menus/plate_confirmation.dart';
+import 'package:tastybite/home_screens/to_delete/plate_confirmation.dart';
 import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentMethod extends StatelessWidget {

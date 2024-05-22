@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/menus/order_confirmation.dart';
+import 'package:tastybite/home_screens/to_delete/order_confirmation.dart';
 import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentTime extends StatelessWidget {

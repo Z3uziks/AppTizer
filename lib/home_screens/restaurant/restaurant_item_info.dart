@@ -1,24 +1,37 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/orders_status_screen.dart';
 import 'package:tastybite/util/myuser.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
-class InfoPage extends StatefulWidget {
+class RestaurantItemInfo extends StatefulWidget {
   final MenuItem item;
   final int mquantity;
   // quantity is not mandatory
 
-  const InfoPage({Key? key, required this.item, this.mquantity = 0}): super(key: key);
+  const RestaurantItemInfo({Key? key, required this.item, this.mquantity = 0})
+      : super(key: key);
 
   @override
-  _InfoPageState createState() => _InfoPageState();
+  _RestaurantItemInfoState createState() => _RestaurantItemInfoState();
 }
 
-class _InfoPageState extends State<InfoPage> {
-  
+class _RestaurantItemInfoState extends State<RestaurantItemInfo> {
   int quantity = 1;
   double total = 0;
   int added = 0;
+  List<String> daysOfTheWeek = [
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sábado",
+    "Domingo"
+  ];
+  List<String> _selectedDaysOfTheWeek = [];
 
   @override
   void initState() {
@@ -36,21 +49,6 @@ class _InfoPageState extends State<InfoPage> {
       appBar: AppBar(
         title: const Text("Informações do Produto"),
         backgroundColor: Colors.lightBlue,
-        actions: <Widget>[
-          Text(
-            "$added",
-            style: const TextStyle(fontSize: 20),
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const OrdersStatusScreen()),
-              );
-            },
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -90,7 +88,8 @@ class _InfoPageState extends State<InfoPage> {
                                     fontSize: 20),
                               ),
                               IconButton(
-                                padding: EdgeInsets.zero, // Adicionando padding zero
+                                padding:
+                                    EdgeInsets.zero, // Adicionando padding zero
                                 onPressed: () {
                                   _showInfoDialog(context, widget.item);
                                 },
@@ -126,117 +125,61 @@ class _InfoPageState extends State<InfoPage> {
               ],
             ),
             const SizedBox(
-              height: 25,
+              height: 40,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      const Text(
-                        "Quantidade",
+                  Center(
+                    child: Text(
+                        "Selecione os dias da semana em que o prato estará disponível:",
                         style: TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 25),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue[200],
-                          borderRadius: BorderRadius.circular(250),
-                        ),
-                        width: 100,
-                        height: 35,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () => remove(widget.item.price),
-                                child: Icon(
-                                  Icons.remove,
-                                  color: Colors.red,
-                                ),
-                              ),
-                              Text(
-                                '$quantity',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18),
-                              ),
-                              GestureDetector(
-                                onTap: () => add(widget.item.price),
-                                child: Icon(
-                                  Icons.add,
-                                  color: Colors.green,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                    )
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text("Total amount"),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text("€$total"),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        height: 40,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.blue[400]!),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                  Center(
+                    child: 
+                      MultiSelectDialogField<String>(
+                          items: daysOfTheWeek
+                              .map((dayOfTheWeek) => MultiSelectItem<String>(
+                                  dayOfTheWeek, dayOfTheWeek))
+                              .toList(),
+                          title: Text("Dias da semana"),
+                          selectedColor: Colors.blue,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.1),
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
                             ),
                           ),
-                          child: const Text(
-                            "Adicionar ao Carrinho",
+
+                          buttonText: Text(
+                            "Dias da semana",
                             style: TextStyle(
-                                color: Colors.white, fontSize: 22),
+                              color: Colors.black,
+                              fontSize: 16,
+                            ),
                           ),
-                          // alert dialog
-                          onPressed: () {
+                          onConfirm: (results) {
                             setState(() {
-                              added = added + 1;
+                              _selectedDaysOfTheWeek = results;
                             });
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text("Produto Adicionado"),
-                                  content: const Text(
-                                      "O produto foi adicionado ao carrinho com sucesso!"),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text("Fechar"),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
                           },
-                        ),
-                      ),
-                    ],
+                          chipDisplay: MultiSelectChipDisplay(
+                            onTap: (value) {
+                              setState(() {
+                                _selectedDaysOfTheWeek.remove(value);
+                              });
+                            },
+                          )),
                   )
                 ],
               ),
@@ -315,7 +258,6 @@ class _InfoPageState extends State<InfoPage> {
       ],
     );
   }
-
 }
 
 class MyClipper extends CustomClipper<Path> {
@@ -347,9 +289,7 @@ Widget itemCake(MenuItem item) {
         Text(
           item.description,
           style: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 15,
-              color: Colors.white),
+              fontWeight: FontWeight.normal, fontSize: 15, color: Colors.white),
         ),
         SizedBox(
           height: 15,

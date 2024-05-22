@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 
-import 'package:tastybite/home_screens/order_screens/delivery_details_card.dart';
+import 'package:tastybite/home_screens/to_delete/order_screens/delivery_details_card.dart';
 
 import 'package:lottie/lottie.dart';
 
-import 'package:tastybite/home_screens/order_screens/animated_step_bar.dart';
-import 'package:tastybite/home_screens/order_screens/contact_rider_card.dart';
+import 'package:tastybite/home_screens/to_delete/order_screens/animated_step_bar.dart';
+import 'package:tastybite/home_screens/to_delete/order_screens/contact_rider_card.dart';
 import 'dart:async';
 
 class OrderStatus {

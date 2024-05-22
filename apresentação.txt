@@ -1,0 +1,4 @@
+Podemos relembrar os requisitos, mas passar muito rápido
+protótipo em papel -> dizer os problemas que encontramos com o protótipo e realçamos os mais importantes pq temos pouco tempo
+desenvolvimento -> dizer com o que é que desenvolvemos, explicar o problema que tivemos, explicar os problemas da aplicação,
+testes de utilizadores -> nº de utilizadores que tivemos, explicar os problemas que apareceram...

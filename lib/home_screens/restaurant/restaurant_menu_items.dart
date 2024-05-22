@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/menus/infoitem_page.dart';
+//import 'package:tastybite/home_screens/menus/infoitem_page.dart';
+import 'package:tastybite/home_screens/restaurant/restaurant_item_info.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/restaurant/add_item.dart'; // go get the class MenuItem
 
@@ -266,7 +267,7 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => InfoPage(item: item)),
+                            builder: (context) => RestaurantItemInfo(item: item)),
                       );
                     },
                     child: Card(
@@ -386,30 +387,7 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
         const SizedBox(
           height: 5,
         ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment
-              .center, // Alterado para MainAxisAlignment.center
-          children: <Widget>[
-            Icon(
-              Icons.shopping_cart,
-              color: Colors.blue,
-              size: 20,
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text(
-              "Compre já!",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 5,
-        ),
+        
         Text(
           item.price,
           style: const TextStyle(

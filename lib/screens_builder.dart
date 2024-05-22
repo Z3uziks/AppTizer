@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:tastybite/home_screens/messenger_screen/messenger_screen.dart';
+import 'package:tastybite/home_screens/to_delete/messenger_screen/messenger_screen.dart';
 import 'package:tastybite/home_screens/restaurant/restaurant_menu_items.dart';
 import 'package:tastybite/splash.dart';
 import 'package:tastybite/util/myuser.dart';

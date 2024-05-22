@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tastybite/home_screens/messenger_screen/chatpage.dart';
+import 'package:tastybite/home_screens/to_delete/messenger_screen/chatpage.dart';
 import 'package:tastybite/services/locator_service.dart';
 
 final FirebaseAuth _auth = locator.get();
