@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/orders_status_screen.dart';
 import 'package:tastybite/util/myuser.dart';
+import 'package:tastybite/home_screens/restaurant_menu.dart';
 
 class InfoPage extends StatefulWidget {
   final MenuItem item;
@@ -217,6 +218,7 @@ class _InfoPageState extends State<InfoPage> {
                             });
                             showDialog(
                               context: context,
+                              barrierDismissible: false, // Impede que o utilizador feche o diálogo clicando fora dele
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   title: const Text("Produto Adicionado"),
@@ -225,7 +227,15 @@ class _InfoPageState extends State<InfoPage> {
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
+                                        // redirect to restaurant_menu.dart
                                         Navigator.of(context).pop();
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => const RestaurantMenu(),
+                                          ),
+                                        );
+                                        
                                       },
                                       child: const Text("Fechar"),
                                     ),

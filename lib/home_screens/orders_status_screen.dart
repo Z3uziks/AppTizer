@@ -105,6 +105,7 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Carrinho'),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
       ),
       floatingActionButton: FloatingActionButton(
@@ -121,6 +122,164 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
         child: SingleChildScrollView(
         child: Column(
           children: [
+            // show the table reservation
+          ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: userReservationsCollection.length,
+            itemBuilder: (context, index) {
+              Map<String, dynamic> reservationData =
+                  userReservationsCollection[index];
+              return GestureDetector(
+                onTap: () {
+                },
+                child: ListTile(
+                  subtitle: TRoundedContainer(
+                    showBorder: true,
+                    padding: const EdgeInsets.all(16),
+                    backgroundColor: Colors.white,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          '${reservationData['name']}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.sunny),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Dia',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium,
+                                        ),
+                                        Text(
+                                            '${reservationData['reservationDay']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  const SizedBox(width: 10),
+                                  const Icon(Icons.schedule),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Hora',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium,
+                                        ),
+                                        Text(
+                                            '${reservationData['reservationTime']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  const SizedBox(width: 10),
+                                  const Icon(Icons.local_offer),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Preço',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium,
+                                        ),
+                                        Text(
+                                            '${reservationData['price']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // Delete IconButton
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Remover item'),
+                                      content: const Text(
+                                          'Tem a certeza que deseja remover este item?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              userReservationsCollection.removeAt(index);
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Remover'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -334,161 +493,9 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
               );
             },
           ),
-          // show the table reservation
-          ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: userReservationsCollection.length,
-            itemBuilder: (context, index) {
-              Map<String, dynamic> reservationData =
-                  userReservationsCollection[index];
-              return GestureDetector(
-                onTap: () {
-                },
-                child: ListTile(
-                  subtitle: TRoundedContainer(
-                    showBorder: true,
-                    padding: const EdgeInsets.all(16),
-                    backgroundColor: Colors.white,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '${reservationData['name']}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.sunny),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Dia',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium,
-                                        ),
-                                        Text(
-                                            '${reservationData['reservationDay']}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.schedule),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Hora',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium,
-                                        ),
-                                        Text(
-                                            '${reservationData['reservationTime']}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.local_offer),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Preço',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium,
-                                        ),
-                                        Text(
-                                            '${reservationData['price']}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            // Delete IconButton
-                            IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: const Text('Remover item'),
-                                      content: const Text(
-                                          'Tem a certeza que deseja remover este item?'),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: const Text('Cancelar'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              userReservationsCollection.removeAt(index);
-                                            });
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: const Text('Remover'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
+          // para que o floatingActionButton não fique por cima dos itens/botão de pagamento
+          SizedBox(
+            height: 100,
           ),
           ]
         ),

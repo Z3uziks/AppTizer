@@ -14,6 +14,9 @@ import 'package:tastybite/home_screens/restaurant/main_page.dart';
 import 'package:tastybite/home_screens/wallet_screen.dart';
 import 'package:tastybite/home_screens/orders_status_screen.dart';
 import 'package:tastybite/util/logout.dart';
+import 'package:tastybite/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Helper extends StatelessWidget {
   final MyUser user;
@@ -25,17 +28,44 @@ class Helper extends StatelessWidget {
   }
 }
 
-class ScreenBuilder extends StatelessWidget {
+class ScreenBuilder extends StatefulWidget {
   final MyUser user;
-  
+
   ScreenBuilder({super.key, required this.user});
 
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  @override
+  _ScreenBuilderState createState() => _ScreenBuilderState();
+}
 
+class _ScreenBuilderState extends State<ScreenBuilder> {
+  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  String? userType;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserType();
+  }
+
+  Future<void> _fetchUserType() async {
+    try {
+      User? currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('Users').doc(currentUser.uid).get();
+        if (userDoc.exists) {
+          setState(() {
+            userType = userDoc['type'];
+          });
+        }
+      }
+    } catch (e) {
+      print('Error fetching user type: $e');
+    }
+  }
   List<Widget> _buildScreens() {
-    print("user: ${user.name}");
-    if(user.name != 'gestor'){
+    print("user: ${userType}");
+
+    if(userType != 'manager'){
       return [
         //MenuScreen(user: user),
         //const RestaurantMenu(),
@@ -51,7 +81,7 @@ class ScreenBuilder extends StatelessWidget {
     }
     else{
       return [
-        const RestaurantMainPage(),
+        RestaurantMainPage(),
         const RestaurantMenuItems(title: 'Pratos'),
       ];
     }
@@ -79,7 +109,7 @@ class ScreenBuilder extends StatelessWidget {
         ),
         title: ("Home"),
       ),
-      user.name != 'gestor'?
+      userType != 'gestor'?
        PersistentBottomNavBarItem(
           icon: const Icon(
             Icons.shopping_cart,
@@ -121,7 +151,13 @@ class ScreenBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     LogoutHelper logoutHelper = Provider.of<LogoutHelper>(context);
     if (logoutHelper.balance == 1) {
-      return const SplashScreen();
+      Future.microtask(() {
+        Route route = MaterialPageRoute(builder: (context) => LoginPage());
+        Navigator.pushReplacement(context, route);
+      });
+
+      // Return a blank container while redirecting
+      return Container();
     } else {
       return ChangeNotifierProvider(
           create: (context) => Wallet(),
