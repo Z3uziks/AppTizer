@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/to_delete/order_confirmation.dart';
+import 'package:tastybite/home_screens/restaurant/table_info.dart';
 import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentTime extends StatelessWidget {
@@ -30,7 +30,12 @@ class PaymentTime extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const OrderConfirmation(),
+                    builder: (context) => const TableInfo(
+                      tableData: {
+                        'tableName': 'Mesa 1',
+                        'reserved': false,
+                      },
+                    ),
                   ),
                 );
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:tastybite/home_screens/restaurant/table_info.dart';
 import 'package:tastybite/services/locator_service.dart';
 import 'package:tastybite/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,11 +15,13 @@ class TableIcon extends StatefulWidget {
   final IconData iconData;
   final String tableName;
   final bool reserved;
+  final List<dynamic> orders; // change to List<dynamic>
 
   const TableIcon({
     required this.iconData,
     required this.tableName,
     this.reserved = false,
+    required this.orders,
     Key? key,
   }) : super(key: key);
 
@@ -76,11 +79,27 @@ class _TableIconState extends State<TableIcon> {
               ),
           ]),
           const SizedBox(height: 10.0),
-          Text(
-            widget.tableName,
-            style: const TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TableInfo(
+                    tableData: {
+                      'tableName': widget.tableName,
+                      'reserved': widget.reserved,
+                      'orders': widget.orders,
+                    },
+                  ),
+                ),
+              );
+            },
+            child: Text(
+              widget.tableName,
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
@@ -98,14 +117,23 @@ class RestaurantMainPage extends StatefulWidget {
 
 class _RestaurantMainPageState extends State<RestaurantMainPage> {
   List<Map<String, dynamic>> tableData = [
-      {'tableName': 'Table 1', 'iconData': Icons.table_restaurant, 'reserved': true},
-      {'tableName': 'Table 2', 'iconData': Icons.table_restaurant, 'reserved': false},
-      {'tableName': 'Table 3', 'iconData': Icons.table_restaurant, 'reserved': false},
-      {'tableName': 'Table 4', 'iconData': Icons.table_restaurant, 'reserved': true},
-      {'tableName': 'Table 5', 'iconData': Icons.table_restaurant, 'reserved': false},
-      {'tableName': 'Table 6', 'iconData': Icons.table_restaurant, 'reserved': false},
-      {'tableName': 'Table 7', 'iconData': Icons.table_restaurant, 'reserved': false},
-      {'tableName': 'Table 8', 'iconData': Icons.table_restaurant, 'reserved': false},
+      {'tableName': 'Table 1', 'iconData': Icons.table_restaurant, 'reserved': true,
+      'orders': [
+        {'orderName': 'Grelhado de Frango', 'orderQuantity': '2',},
+        {'orderName': 'Grelhado de Carne', 'orderQuantity': '1',},
+      ].cast<Map<String, dynamic>>(),
+      },
+      {'tableName': 'Table 2', 'iconData': Icons.table_restaurant, 'reserved': false, 'orders': [].cast<Map<String, dynamic>>(),},
+      {'tableName': 'Table 3', 'iconData': Icons.table_restaurant, 'reserved': false, 'orders': [].cast<Map<String, dynamic>>(),},
+      {'tableName': 'Table 4', 'iconData': Icons.table_restaurant, 'reserved': true,
+      'orders': [
+        {'orderName': 'Grelhado de Peixe', 'orderQuantity': '2',},
+      ].cast<Map<String, dynamic>>(),},
+
+      {'tableName': 'Table 5', 'iconData': Icons.table_restaurant, 'reserved': false, 'orders': [].cast<Map<String, dynamic>>(),},
+      {'tableName': 'Table 6', 'iconData': Icons.table_restaurant, 'reserved': false, 'orders': [].cast<Map<String, dynamic>>(),},
+      {'tableName': 'Table 7', 'iconData': Icons.table_restaurant, 'reserved': false, 'orders': [].cast<Map<String, dynamic>>(),},
+      {'tableName': 'Table 8', 'iconData': Icons.table_restaurant, 'reserved': false, 'orders': [].cast<Map<String, dynamic>>(),},
     ];
 
   void setAllTablesReserved() {
@@ -205,6 +233,7 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
                   tableName: data['tableName'],
                   iconData: data['iconData'],
                   reserved: data['reserved'],
+                  orders: data['orders'],
                 );
               }).toList(),
             ),

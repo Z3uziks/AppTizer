@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tastybite/home_screens/menus/infoitem_page.dart';
-import 'package:tastybite/home_screens/to_delete/order_confirmation.dart';
+import 'package:tastybite/home_screens/restaurant/table_info.dart';
+import 'package:tastybite/home_screens/to_delete/payment_time.dart';
 import 'package:tastybite/services/locator_service.dart';
 import 'package:tastybite/home_screens/rounded_container.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
@@ -107,7 +108,9 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const OrderConfirmation()), // Altera aqui santolas
+            MaterialPageRoute(
+              builder: (context) => const PaymentTime(),
+            ),
           );
         },
         backgroundColor: Colors.blue,
