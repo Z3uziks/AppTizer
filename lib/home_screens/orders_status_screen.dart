@@ -8,7 +8,7 @@ import 'package:tastybite/home_screens/menus/infoitem_page.dart';
 import 'package:tastybite/home_screens/to_delete/order_confirmation.dart';
 import 'package:tastybite/home_screens/to_delete/payment_method.dart';
 import 'package:tastybite/services/locator_service.dart';
-import 'package:tastybite/home_screens/order_page.dart';
+import 'package:tastybite/home_screens/to_delete/order_page.dart';
 import 'package:tastybite/home_screens/rounded_container.dart';
 import 'package:intl/intl.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';

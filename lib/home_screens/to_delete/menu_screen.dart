@@ -4,7 +4,7 @@ import 'package:tastybite/util/wallet.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:tastybite/services/local_notification_service.dart';
-import 'package:tastybite/home_screens/order_page.dart';
+import 'package:tastybite/home_screens/to_delete/order_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tastybite/services/locator_service.dart';
