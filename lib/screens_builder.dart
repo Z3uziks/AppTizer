@@ -109,7 +109,7 @@ class _ScreenBuilderState extends State<ScreenBuilder> {
         ),
         title: ("Home"),
       ),
-      userType != 'gestor'?
+      userType != 'manager'?
        PersistentBottomNavBarItem(
           icon: const Icon(
             Icons.shopping_cart,
