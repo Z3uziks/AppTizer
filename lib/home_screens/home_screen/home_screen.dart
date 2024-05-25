@@ -3,6 +3,15 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:tastybite/home_screens/restaurant_menu.dart';
+import 'package:provider/provider.dart';
+import 'package:tastybite/services/locator_service.dart';
+import 'package:tastybite/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tastybite/util/logout.dart';
+
+final FirebaseAuth _auth = locator.get();
+final FirebaseFirestore _firestore = locator.get();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       'Ramona',
       'Dolce Pizzeria Ristorante',
     ];
+    LogoutHelper logoutHelper = Provider.of<LogoutHelper>(context);
 
     return Scaffold(
       body: Stack(
@@ -130,6 +140,43 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showLogoutConfirmationDialog(context, logoutHelper),
+        child: Icon(
+          Icons.logout,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ),
+
+
+    );
+  }
+  void _showLogoutConfirmationDialog(BuildContext context, LogoutHelper logoutHelper) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Logout'),
+          content: Text('Are you sure you want to logout?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () async {
+                  await AuthServices(_firestore, _auth)
+                      .signOut(context, logoutHelper);
+                      Navigator.of(context).pop(); // Close the dialog
+                },
+              child: Text('Logout'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
