@@ -1,16 +1,11 @@
 //import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tastybite/home_screens/home_screen/home_screen.dart';
 import 'package:tastybite/home_screens/menus/infoitem_page.dart';
 import 'package:tastybite/home_screens/to_delete/order_confirmation.dart';
-import 'package:tastybite/home_screens/to_delete/payment_method.dart';
 import 'package:tastybite/services/locator_service.dart';
-import 'package:tastybite/home_screens/to_delete/order_page.dart';
 import 'package:tastybite/home_screens/rounded_container.dart';
-import 'package:intl/intl.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'dart:async';
 
@@ -112,11 +107,11 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => OrderConfirmation()), // Altera aqui santolas
+            MaterialPageRoute(builder: (context) => const OrderConfirmation()), // Altera aqui santolas
           );
         },
-        child: const Icon(Icons.paid,size: 30),
         backgroundColor: Colors.blue,
+        child: const Icon(Icons.paid,size: 30),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -314,7 +309,7 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           
                           children: [
-                            Container(
+                            SizedBox(
                               height: 100,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -384,7 +379,7 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
                                           width: 80,
                                           height: 35,
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: 10),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10),
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: <Widget>[
@@ -494,7 +489,7 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
             },
           ),
           // para que o floatingActionButton não fique por cima dos itens/botão de pagamento
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
           ]
@@ -518,7 +513,7 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
       print("-----------");
         print(total);
         print("-----------");
-      orderData['price'] = '€' + total.toStringAsFixed(2);
+      orderData['price'] = '€${total.toStringAsFixed(2)}';
     });
   }
 
@@ -538,7 +533,7 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
         print(total);
         print("-----------");
         
-        orderData['price'] = '€' + total.toStringAsFixed(2);
+        orderData['price'] = '€${total.toStringAsFixed(2)}';
       }
     });
   }

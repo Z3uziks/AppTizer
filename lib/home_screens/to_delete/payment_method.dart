@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/to_delete/plate_confirmation.dart';
-import 'package:tastybite/home_screens/menus/table_confirmation.dart';
 
 class PaymentMethod extends StatelessWidget {
   const PaymentMethod({Key? key}) : super(key: key);
@@ -34,7 +33,7 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 );
               },
-              child: Container(
+              child: SizedBox(
                 width: 100,
                 height: 100,
                 child: Image.asset('assets/payments/mbway.png'),
@@ -51,7 +50,7 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 );
               },
-              child: Container(
+              child: SizedBox(
                 width: 100,
                 height: 100,
                 child: Image.asset('assets/payments/paypal.png'),
@@ -68,10 +67,10 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 );
               },
-              child: Container(
+              child: const SizedBox(
                 width: 100,
                 height: 100,
-                child: const Row(
+                child: Row(
                   children: [
                     Icon(Icons.credit_card, size: 40),
                     Text(' Cartão', style: TextStyle(fontSize: 18)),

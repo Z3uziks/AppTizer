@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/menus/menuitemspage.dart';
-import 'package:tastybite/home_screens/restaurant_menu.dart';
 import 'package:tastybite/home_screens/orders_status_screen.dart';
 
 class PlateConfirmation extends StatelessWidget {
@@ -36,7 +34,7 @@ class PlateConfirmation extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('Voltar ao Menu'),
+              child: const Text('Voltar ao Carrinho'),
             ),
           ],
         ),

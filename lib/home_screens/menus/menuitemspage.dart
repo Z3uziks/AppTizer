@@ -204,7 +204,7 @@ class MenuItemPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => InfoPage(item: item)),
+                      MaterialPageRoute(builder: (context) => InfoPage(item: item, title: title)),
                     );
                   },
                   child: Card(
@@ -214,7 +214,7 @@ class MenuItemPage extends StatelessWidget {
                     elevation: 5,
                     child: Row(
                       children: <Widget>[
-                        Container(
+                        SizedBox(
                           width: 150,
                           height: 150,
                           child: ClipRRect(

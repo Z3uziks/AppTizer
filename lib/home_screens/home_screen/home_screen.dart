@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:tastybite/home_screens/restaurant_menu.dart';
 import 'package:provider/provider.dart';
 import 'package:tastybite/services/locator_service.dart';
@@ -21,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
     bool isDark = false;
     final List<String> suggestions = [
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RestaurantMenu()),
+                              builder: (context) => const RestaurantMenu()),
                         );
                       },
                       child: const Row(
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RestaurantMenu()),
+                                builder: (context) => const RestaurantMenu()),
                           );
                         },
                         child: const Row(
@@ -126,12 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
               return List<ListTile>.generate(suggestions.length, (int index) {
                 final String item = suggestions[index];
                 return ListTile(
-                  leading: Icon(Icons.location_on),
+                  leading: const Icon(Icons.location_on),
                   title: Text(item),
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RestaurantMenu()),
+                      MaterialPageRoute(builder: (context) => const RestaurantMenu()),
                     );
                   },
                 );
@@ -157,14 +157,14 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Logout'),
-          content: Text('Are you sure you want to logout?'),
+          title: const Text('Logout'),
+          content: const Text('Are you sure you want to logout?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () async {
@@ -172,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       .signOut(context, logoutHelper);
                       Navigator.of(context).pop(); // Close the dialog
                 },
-              child: Text('Logout'),
+              child: const Text('Logout'),
             ),
           ],
         );

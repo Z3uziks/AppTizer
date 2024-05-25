@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
-import 'package:tastybite/home_screens/orders_status_screen.dart';
-import 'package:tastybite/util/myuser.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class RestaurantItemInfo extends StatefulWidget {
@@ -58,13 +54,13 @@ class _RestaurantItemInfoState extends State<RestaurantItemInfo> {
                 ClipPath(
                   clipper: MyClipper(),
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     height: 300,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
-                        end: Alignment(0.8, 0.0),
+                        end: const Alignment(0.8, 0.0),
                         colors: [
                           Colors.lightBlue,
                           Colors.lightBlueAccent[100]!,
@@ -75,7 +71,7 @@ class _RestaurantItemInfoState extends State<RestaurantItemInfo> {
                     child: Column(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 20),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +127,7 @@ class _RestaurantItemInfoState extends State<RestaurantItemInfo> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: <Widget>[
-                  Center(
+                  const Center(
                     child: Text(
                         "Selecione os dias da semana em que o prato estará disponível:",
                         style: TextStyle(
@@ -150,18 +146,18 @@ class _RestaurantItemInfoState extends State<RestaurantItemInfo> {
                               .map((dayOfTheWeek) => MultiSelectItem<String>(
                                   dayOfTheWeek, dayOfTheWeek))
                               .toList(),
-                          title: Text("Dias da semana"),
+                          title: const Text("Dias da semana"),
                           selectedColor: Colors.blue,
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.1),
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            borderRadius: const BorderRadius.all(Radius.circular(40)),
                             border: Border.all(
                               color: Colors.black,
                               width: 2,
                             ),
                           ),
 
-                          buttonText: Text(
+                          buttonText: const Text(
                             "Dias da semana",
                             style: TextStyle(
                               color: Colors.black,
@@ -283,15 +279,15 @@ Widget itemCake(MenuItem item) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Text(
           item.description,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.normal, fontSize: 15, color: Colors.white),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Row(
@@ -301,13 +297,13 @@ Widget itemCake(MenuItem item) {
             Column(
               children: <Widget>[
                 Text(
-                  "${item.price}",
-                  style: TextStyle(
+                  item.price,
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
                       color: Colors.black54),
                 ),
-                Text(
+                const Text(
                   "por Quantidade",
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
@@ -318,12 +314,12 @@ Widget itemCake(MenuItem item) {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Row(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Visibility(

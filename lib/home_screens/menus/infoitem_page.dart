@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/orders_status_screen.dart';
-import 'package:tastybite/util/myuser.dart';
-import 'package:tastybite/home_screens/restaurant_menu.dart';
 
 class InfoPage extends StatefulWidget {
   final MenuItem item;
   final int mquantity;
+  final String title;
   // quantity is not mandatory
 
-  const InfoPage({Key? key, required this.item, this.mquantity = 0}): super(key: key);
+  const InfoPage({Key? key, required this.item, this.mquantity = 0, this.title = 'Pratos'}): super(key: key);
 
   @override
   _InfoPageState createState() => _InfoPageState();
@@ -61,13 +60,13 @@ class _InfoPageState extends State<InfoPage> {
                 ClipPath(
                   clipper: MyClipper(),
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     height: 300,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
-                        end: Alignment(0.8, 0.0),
+                        end: const Alignment(0.8, 0.0),
                         colors: [
                           Colors.lightBlue,
                           Colors.lightBlueAccent[100]!,
@@ -78,7 +77,7 @@ class _InfoPageState extends State<InfoPage> {
                     child: Column(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 20),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,26 +148,26 @@ class _InfoPageState extends State<InfoPage> {
                         width: 100,
                         height: 35,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               GestureDetector(
                                 onTap: () => remove(widget.item.price),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.remove,
                                   color: Colors.red,
                                 ),
                               ),
                               Text(
                                 '$quantity',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 18),
                               ),
                               GestureDetector(
                                 onTap: () => add(widget.item.price),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.add,
                                   color: Colors.green,
                                 ),
@@ -179,21 +178,21 @@ class _InfoPageState extends State<InfoPage> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text("Total amount"),
-                  SizedBox(
+                  const Text("Total amount"),
+                  const SizedBox(
                     height: 10,
                   ),
                   Text("€$total"),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Container(
+                      SizedBox(
                         height: 40,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextButton(
@@ -216,6 +215,12 @@ class _InfoPageState extends State<InfoPage> {
                             setState(() {
                               added = added + 1;
                             });
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                // if title Pratos, redirect to MenuItemPage(title: 'Pratos') else redirect to MenuItemPage(title: 'Bebidas')
+                                  builder: (context) => MenuItemPage(title: widget.title))
+                            );
                             showDialog(
                               context: context,
                               barrierDismissible: false, // Impede que o utilizador feche o diálogo clicando fora dele
@@ -227,15 +232,7 @@ class _InfoPageState extends State<InfoPage> {
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
-                                        // redirect to restaurant_menu.dart
                                         Navigator.of(context).pop();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => const RestaurantMenu(),
-                                          ),
-                                        );
-                                        
                                       },
                                       child: const Text("Fechar"),
                                     ),
@@ -351,17 +348,17 @@ Widget itemCake(MenuItem item) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Text(
           item.description,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.normal,
               fontSize: 15,
               color: Colors.white),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Row(
@@ -371,13 +368,13 @@ Widget itemCake(MenuItem item) {
             Column(
               children: <Widget>[
                 Text(
-                  "${item.price}",
-                  style: TextStyle(
+                  item.price,
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
                       color: Colors.black54),
                 ),
-                Text(
+                const Text(
                   "por Quantidade",
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
@@ -388,12 +385,12 @@ Widget itemCake(MenuItem item) {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Row(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Visibility(

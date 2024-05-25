@@ -16,7 +16,7 @@ class _AddItemState extends State<AddItem> {
   String _name = '';
   String _description = '';
   String _ingredients = '';
-  double _rating = 0.0;
+  final double _rating = 0.0;
   String _cookTime = '';
   double _price = 0.0;
   List<String> _selectedAllergens = [];
@@ -29,7 +29,7 @@ class _AddItemState extends State<AddItem> {
   Widget build(BuildContext context) {
 
 
-    final _allergens = [
+    final allergens = [
       'Glúten',
       'Lactose',
       'Nozes',
@@ -47,7 +47,7 @@ class _AddItemState extends State<AddItem> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adicionar Prato'),
+        title: const Text('Adicionar Prato'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -56,7 +56,7 @@ class _AddItemState extends State<AddItem> {
           child: ListView(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'Nome', hintText: 'Ex: Bife à Portuguesa'),
+                decoration: const InputDecoration(labelText: 'Nome', hintText: 'Ex: Bife à Portuguesa'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor insira o nome do prato';
@@ -68,7 +68,7 @@ class _AddItemState extends State<AddItem> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Descrição', hintText: 'Ex: Bife de vaca com batatas fritas e ovo estrelado'),
+                decoration: const InputDecoration(labelText: 'Descrição', hintText: 'Ex: Bife de vaca com batatas fritas e ovo estrelado'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor insira a descrição do prato';
@@ -80,7 +80,7 @@ class _AddItemState extends State<AddItem> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Ingredientes', hintText: 'Ingrediente1, Ingrediente2, ...'),
+                decoration: const InputDecoration(labelText: 'Ingredientes', hintText: 'Ingrediente1, Ingrediente2, ...'),
                 
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -93,7 +93,7 @@ class _AddItemState extends State<AddItem> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Tempo de Preparação', hintText: 'Ex: 30 (minutos)'),
+                decoration: const InputDecoration(labelText: 'Tempo de Preparação', hintText: 'Ex: 30 (minutos)'),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
@@ -110,7 +110,7 @@ class _AddItemState extends State<AddItem> {
               ),
 
               TextFormField(
-                decoration: InputDecoration(labelText: 'Preço', hintText: 'Ex: 10.50 (€)'),
+                decoration: const InputDecoration(labelText: 'Preço', hintText: 'Ex: 10.50 (€)'),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                    FilteringTextInputFormatter.allow(
@@ -131,19 +131,19 @@ class _AddItemState extends State<AddItem> {
               // For simplicity, I'm using a multi-select checkbox
               const SizedBox(height: 10),
               MultiSelectDialogField<String>(
-                items: _allergens.map((allergen) => MultiSelectItem<String>(allergen, allergen)).toList(),
-                title: Text("Alergénios"),
+                items: allergens.map((allergen) => MultiSelectItem<String>(allergen, allergen)).toList(),
+                title: const Text("Alergénios"),
                 searchable: true,
                 selectedColor: Colors.blue,
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.1),
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  borderRadius: const BorderRadius.all(Radius.circular(40)),
                   border: Border.all(
                     color: Colors.black,
                     width: 2,
                   ),
                 ),
-                buttonText: Text(
+                buttonText: const Text(
                   "Selecionar Alergénios",
                   style: TextStyle(
                     color: Colors.black,
@@ -169,7 +169,7 @@ class _AddItemState extends State<AddItem> {
 
               
               TextFormField(
-                decoration: InputDecoration(labelText: 'Calorias', hintText: 'Ex: 500 (kcal)'),
+                decoration: const InputDecoration(labelText: 'Calorias', hintText: 'Ex: 500 (kcal)'),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
@@ -179,7 +179,7 @@ class _AddItemState extends State<AddItem> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Proteína', hintText: 'Ex: 20 (g)'),
+                decoration: const InputDecoration(labelText: 'Proteína', hintText: 'Ex: 20 (g)'),
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
                 ],
@@ -189,7 +189,7 @@ class _AddItemState extends State<AddItem> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Carboidratos', hintText: 'Ex: 50 (g)'),
+                decoration: const InputDecoration(labelText: 'Carboidratos', hintText: 'Ex: 50 (g)'),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
@@ -200,7 +200,7 @@ class _AddItemState extends State<AddItem> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Gorduras', hintText: 'Ex: 30 (g)'),
+                decoration: const InputDecoration(labelText: 'Gorduras', hintText: 'Ex: 30 (g)'),
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
                 ],
@@ -209,7 +209,7 @@ class _AddItemState extends State<AddItem> {
                   _fats = value==''? _fats : double.parse(value!);
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -232,7 +232,7 @@ class _AddItemState extends State<AddItem> {
                     Navigator.pop(context, newDish);  
                   }
                 },
-                child: Text('Adicionar Prato'),
+                child: const Text('Adicionar Prato'),
               ),
             ],
           ),

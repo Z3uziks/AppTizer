@@ -184,7 +184,7 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
           // Navigate to AddDishPage and wait for a result
           final newDish = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddItem()),
+            MaterialPageRoute(builder: (context) => const AddItem()),
           );
           // Check if a new dish was added
           if (newDish != null) {
@@ -195,8 +195,8 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
             });
           }
         },
-        child: const Icon(Icons.add),
         backgroundColor: Colors.blue,
+        child: const Icon(Icons.add),
       ),
       body: Padding(
         padding: const EdgeInsets.all(5),
@@ -213,7 +213,7 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
                   // Navigate to AddDishPage and wait for a result
                   final newDish = await Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AddItem()),
+                    MaterialPageRoute(builder: (context) => const AddItem()),
                   );
 
                   // Check if a new dish was added
@@ -231,20 +231,20 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
                   ),
                   elevation: 5,
                   child:  Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.add,
                           size: 30.0,
                           color: Colors.blue,
                         ),
-                        SizedBox(
+                        const SizedBox(
                             width: 10.0), // Add spacing between icon and text
                         Text(
                           widget.title == "Pratos" ? "Adicionar prato" : "Adicionar bebida",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,
                             color: Colors.blue,
@@ -277,7 +277,7 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
                       elevation: 5,
                       child: Row(
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                             width: 150,
                             height: 150,
                             child: ClipRRect(

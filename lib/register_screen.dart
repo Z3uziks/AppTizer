@@ -3,7 +3,6 @@ import 'package:tastybite/services/locator_service.dart';
 import 'package:tastybite/services/auth_service.dart';
 import 'package:tastybite/util/myuser.dart';
 import 'package:tastybite/login.dart';
-import 'package:tastybite/screens_builder.dart';
 
 enum AccountType { client, manager }
 

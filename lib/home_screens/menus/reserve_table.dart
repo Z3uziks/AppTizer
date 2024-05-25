@@ -25,13 +25,13 @@ class ReservePage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: TextField(
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly // Allow only digits
                 ],
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   //hintText: 'Informe o nº de pessoas',
                   border: OutlineInputBorder(),
                 ),

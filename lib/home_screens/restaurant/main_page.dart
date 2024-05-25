@@ -62,9 +62,9 @@ class _TableIconState extends State<TableIcon> {
                 top: 0,
                 right: 0,
                 child: Container(
-                  padding: EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(4),
                   color: Colors.white,
-                  child: Text(
+                  child: const Text(
                     'Booked',
                     style: TextStyle(
                       fontSize: 12,
@@ -75,10 +75,10 @@ class _TableIconState extends State<TableIcon> {
                 ),
               ),
           ]),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Text(
             widget.tableName,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
@@ -90,7 +90,7 @@ class _TableIconState extends State<TableIcon> {
 }
 
 class RestaurantMainPage extends StatefulWidget {
-  RestaurantMainPage({Key? key}) : super(key: key);
+  const RestaurantMainPage({Key? key}) : super(key: key);
 
   @override
   _RestaurantMainPageState createState() => _RestaurantMainPageState();
@@ -136,7 +136,7 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
     bool reserved = false;
     return Scaffold(
      appBar: AppBar(
-        title: Text('Restaurant tables'),
+        title: const Text('Restaurant tables'),
         /*actions: <Widget>[
           IconButton(
             icon: Icon(Icons.check), // Ícone para definir todas as mesas como livres
@@ -161,16 +161,16 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.green,
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8), // Padding vertical e horizontal
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8), // Padding vertical e horizontal
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10), // Bordas arredondadas
                       ),
                     ),
-                    child: Text('Mark All as Free'),
+                    child: const Text('Mark All as Free'),
                   ),
                 ),
                 SizedBox(
@@ -180,26 +180,26 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.red,
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8), // Padding vertical e horizontal
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8), // Padding vertical e horizontal
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10), // Bordas arredondadas
                       ),
                     ),
-                    child: Text('Mark All as Reserved'),
+                    child: const Text('Mark All as Reserved'),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 16.0), // Espaço entre o GridView e os botões
+            const SizedBox(height: 16.0), // Espaço entre o GridView e os botões
             GridView.count(
-              physics: NeverScrollableScrollPhysics(), // Disable GridView's scrolling
+              physics: const NeverScrollableScrollPhysics(), // Disable GridView's scrolling
               shrinkWrap: true,
               crossAxisCount: 2, // Number of columns in the grid
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               children: tableData.map((data) {
                 return TableIcon(
                   tableName: data['tableName'],
@@ -227,14 +227,14 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Logout'),
-          content: Text('Are you sure you want to logout?'),
+          title: const Text('Logout'),
+          content: const Text('Are you sure you want to logout?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () async {
@@ -242,7 +242,7 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
                       .signOut(context, logoutHelper);
                       Navigator.of(context).pop(); // Close the dialog
                 },
-              child: Text('Logout'),
+              child: const Text('Logout'),
             ),
           ],
         );
