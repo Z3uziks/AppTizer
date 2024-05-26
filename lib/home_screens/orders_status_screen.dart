@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tastybite/home_screens/menus/infoitem_page.dart';
+import 'package:tastybite/home_screens/payment_method.dart';
 import 'package:tastybite/home_screens/restaurant/table_info.dart';
-import 'package:tastybite/home_screens/to_delete/payment_time.dart';
+import 'package:tastybite/home_screens/restaurant/payment_time.dart';
 import 'package:tastybite/services/locator_service.dart';
 import 'package:tastybite/home_screens/rounded_container.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
@@ -105,17 +106,18 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
         backgroundColor: Colors.blue,
       ),
       floatingActionButton: FloatingActionButton(
+
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const PaymentTime(),
+              builder: (context) => const PaymentMethod(),
             ),
           );
         },
         backgroundColor: Colors.blue,
-        child: const Icon(Icons.paid,size: 30),
-      ),
+        child: const Icon(Icons.paid, size: 30),
+          ),
       body: SafeArea(
         child: SingleChildScrollView(
         child: Column(
@@ -493,8 +495,36 @@ class _OrdersStatusScreenState extends State<OrdersStatusScreen> {
           ),
           // para que o floatingActionButton não fique por cima dos itens/botão de pagamento
           const SizedBox(
-            height: 100,
+            height: 50,
           ),
+
+           Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PaymentMethod(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  //primary: Colors.blue,
+                  //backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  minimumSize:
+                      const Size(double.infinity, 50), // Full-width button
+                ),
+                child: const Text(
+                  'Finalizar compra',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ),
+
+
+
           ]
         ),
       ),
