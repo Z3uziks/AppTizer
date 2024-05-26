@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tastybite/home_screens/menus/menuitemspage.dart'; // go get the class MenuItem
+import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:flutter/services.dart'; 
 

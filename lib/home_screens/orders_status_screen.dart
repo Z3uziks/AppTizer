@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tastybite/home_screens/menus/infoitem_page.dart';
 import 'package:tastybite/home_screens/payment_method.dart';
-import 'package:tastybite/home_screens/restaurant/table_info.dart';
-import 'package:tastybite/home_screens/restaurant/payment_time.dart';
 import 'package:tastybite/services/locator_service.dart';
 import 'package:tastybite/home_screens/rounded_container.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';

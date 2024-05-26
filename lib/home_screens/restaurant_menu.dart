@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tastybite/home_screens/menus/details_page.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/menus/reserve_table.dart';
 
@@ -10,7 +11,7 @@ class RestaurantMenu extends StatelessWidget {
     "Pratos": const MenuItemPage(title: "Pratos"),
     "Mesas": const ReservePage(),
     "Bebidas": const MenuItemPage(title: "Bebidas"),
-    "Detalhes": const MenuItemPage(title: "Detalhes"), // Meteste (Gabriel) para o MenuItemPage, sendo essa a pagina errada, mas por enquanto deixa-se assim
+    "Detalhes": const DetailsPage(),
   };
 
   @override
