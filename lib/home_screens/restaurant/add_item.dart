@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:flutter/services.dart'; 
+import 'package:tastybite/util/new_image.dart';
 
 
 class AddItem extends StatefulWidget {
@@ -24,6 +25,13 @@ class _AddItemState extends State<AddItem> {
   double _proteins = -1.0;
   double _carbohydrates = -1.0;
   double _fats = -1.0;
+  String _image = 'assets/grelhado.jpg';
+
+void onImageChanged(String newValue) {
+    setState(() {
+      _image = newValue;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +63,11 @@ class _AddItemState extends State<AddItem> {
           key: _formKey,
           child: ListView(
             children: [
+              NewImagePickerWidget(
+                onValueChanged: onImageChanged,
+                edit: "",
+              ),
+              const SizedBox(height: 10),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Nome', hintText: 'Ex: Bife à Portuguesa'),
                 validator: (value) {
@@ -227,7 +240,7 @@ class _AddItemState extends State<AddItem> {
                       price: "€${_price.toStringAsFixed(2)}",
                       allergens: _selectedAllergens.join(', '),
                       nutrition: buildNutritionString(),
-                      image: 'assets/grelhado.jpg',
+                      image: _image,
                     );
                     Navigator.pop(context, newDish);  
                   }
