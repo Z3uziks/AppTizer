@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:tastybite/home_screens/menus/infoitem_page.dart';
 import 'package:tastybite/home_screens/restaurant/restaurant_item_info.dart';
+import 'package:tastybite/home_screens/restaurant/restaurant_newitem_info.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:tastybite/home_screens/restaurant/add_item.dart'; // go get the class MenuItem
 
@@ -161,6 +162,7 @@ class RestaurantMenuItems extends StatefulWidget {
       image: 'assets/vinhotinto.jpg',
     ),
   ];
+  static final List<NewMenuItem> newItems = [];
 
   const RestaurantMenuItems({super.key, required this.title});
 
@@ -191,73 +193,25 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
             // Add the new dish to the menu
             // For example, you can add it to the itemsPratos list
             setState(() {
-              RestaurantMenuItems.itemsPratos.add(newDish);
+              RestaurantMenuItems.newItems.add(newDish);
             });
           }
         },
         backgroundColor: Colors.blue,
         child: const Icon(Icons.add),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(5),
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: widget.title == "Pratos" ? RestaurantMenuItems.itemsPratos.length + 1 : RestaurantMenuItems.itemsBebidas.length + 1,
-          itemBuilder: (context, index) {
-            if (index ==
-                (widget.title == "Pratos"
-                    ? RestaurantMenuItems.itemsPratos.length
-                    : RestaurantMenuItems.itemsBebidas.length)) {
-              return GestureDetector(
-                 onTap: () async {
-                  // Navigate to AddDishPage and wait for a result
-                  final newDish = await Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const AddItem()),
-                  );
-
-                  // Check if a new dish was added
-                  if (newDish != null) {
-                    // Add the new dish to the menu
-                    // For example, you can add it to the itemsPratos list
-                    setState(() {
-                      RestaurantMenuItems.itemsPratos.add(newDish);
-                    });
-                  }
-                },
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  elevation: 5,
-                  child:  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.add,
-                          size: 30.0,
-                          color: Colors.blue,
-                        ),
-                        const SizedBox(
-                            width: 10.0), // Add spacing between icon and text
-                        Text(
-                          widget.title == "Pratos" ? "Adicionar prato" : "Adicionar bebida",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              final item =
-                  widget.title == "Pratos" ? RestaurantMenuItems.itemsPratos[index] : RestaurantMenuItems.itemsBebidas[index];
+      body: SafeArea(
+        child: SingleChildScrollView(
+        child: Column(
+          children: [
+            // for new items
+          ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount: RestaurantMenuItems.newItems.length,
+            itemBuilder: (context, index) {
+              final item = RestaurantMenuItems.newItems[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Hero(
@@ -267,7 +221,7 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RestaurantItemInfo(item: item)),
+                            builder: (context) => RestaurantNewItemInfo(item: item)),
                       );
                     },
                     child: Card(
@@ -282,15 +236,23 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
                             height: 150,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15.0),
-                              child: Image(
+                              child: item.image != null
+                            ? Image.file(
+                                item.image!,
+                                width: 230,
+                                height: 210,
                                 fit: BoxFit.cover,
-                                alignment: Alignment.topRight,
-                                image: AssetImage(item.image),
+                              )
+                            : Image.network(
+                                item.imageurl,
+                                width: 230,
+                                height: 210,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Expanded(
-                            child: buildItemDetails(item),
+                            child: buildNewItemDetails(item),
                           ),
                         ],
                       ),
@@ -298,12 +260,214 @@ class _RestaurantMenuItemsState extends State<RestaurantMenuItems> {
                   ),
                 ),
               );
-            }
-          },
+            },
+          ),
+            // show the table reservation
+          ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount: widget.title == "Pratos" ? RestaurantMenuItems.itemsPratos.length + 1 : RestaurantMenuItems.itemsBebidas.length + 1,
+            itemBuilder: (context, index) {
+              if (index ==
+                  (widget.title == "Pratos"
+                      ? RestaurantMenuItems.itemsPratos.length
+                      : RestaurantMenuItems.itemsBebidas.length)) {
+                return GestureDetector(
+                  onTap: () async {
+                    // Navigate to AddDishPage and wait for a result
+                    final newDish = await Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AddItem()),
+                    );
+
+                    // Check if a new dish was added
+                    if (newDish != null) {
+                      // Add the new dish to the menu
+                      // For example, you can add it to the itemsPratos list
+                      setState(() {
+                        RestaurantMenuItems.newItems.add(newDish);
+                      });
+                    }
+                  },
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 5,
+                    child:  Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.add,
+                            size: 30.0,
+                            color: Colors.blue,
+                          ),
+                          const SizedBox(
+                              width: 10.0), // Add spacing between icon and text
+                          Text(
+                            widget.title == "Pratos" ? "Adicionar prato" : "Adicionar bebida",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              } else {
+                final item =
+                    widget.title == "Pratos" ? RestaurantMenuItems.itemsPratos[index] : RestaurantMenuItems.itemsBebidas[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Hero(
+                    tag: "item_${item.name}",
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RestaurantItemInfo(item: item)),
+                        );
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        elevation: 5,
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 150,
+                              height: 150,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Image(
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topRight,
+                                  image: AssetImage(item.image),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: buildItemDetails(item),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+          
+
+
+          ],
         ),
+      ),
       ),
     );
   }
+
+  Widget buildNewItemDetails(NewMenuItem item) {
+    return Column(
+      //mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: Row(
+                  children: <Widget>[
+                    Visibility(
+                      visible: item.newitem,
+                      child: Container(
+                        width: 45,
+                        decoration: BoxDecoration(
+                          color: Colors.yellow,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "Novo",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Text(
+                        item.name,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.blue),
+                        textAlign: TextAlign
+                            .center, // Centraliza o texto horizontalmente
+                        overflow: TextOverflow
+                            .visible, // Define o comportamento de overflow do texto
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment
+              .center, // Alterado para MainAxisAlignment.center
+          children: <Widget>[
+            const SizedBox(
+              width: 10,
+            ),
+            showrating(item.rating),
+            const SizedBox(
+              width: 10,
+            ),
+            Icon(
+              widget.title == "Bebidas" ? Icons.local_drink : Icons.timer,
+              size: 17,
+              color: Colors.blue,
+            ),
+            Text(
+              widget.title == "Bebidas" ? item.qtd : item.cookTime,
+              style: const TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                  color: Colors.grey),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        
+        Text(
+          item.price,
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 14, color: Colors.red),
+        ),
+      ],
+    );
+  }
+
 
   Widget buildItemDetails(MenuItem item) {
     return Column(

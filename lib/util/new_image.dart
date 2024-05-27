@@ -6,12 +6,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
 class NewImagePickerWidget extends StatefulWidget {
-  final ValueChanged<String> onValueChanged;
+  final ValueChanged<File> onValueChanged;
+  final ValueChanged<String> onValueChangedUrl;
   final String edit;
 
   const NewImagePickerWidget({
     Key? key,
     required this.onValueChanged,
+    required this.onValueChangedUrl,
     required this.edit,
   }) : super(key: key);
 
@@ -38,7 +40,7 @@ class _NewImagePickerWidgetState extends State<NewImagePickerWidget> {
 
   Future<void> getImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source);
+      final XFile? image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
 
       final imagePermanent = await saveFilePermanently(image.path);
@@ -47,11 +49,12 @@ class _NewImagePickerWidgetState extends State<NewImagePickerWidget> {
         _image = imagePermanent;
       });
 
-      widget.onValueChanged(_image!.path);
-      _imageUrl = _image!.path;
+      widget.onValueChanged(_image!);
+      
       setState(() {
         _imageUrl = _image!.path;
       });
+      widget.onValueChangedUrl(_image!.path);
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }

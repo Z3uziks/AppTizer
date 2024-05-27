@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:tastybite/home_screens/menus/infoitem_page.dart';
 
 // Definição de um modelo para os itens (pratos ou bebidas)
@@ -27,6 +28,36 @@ class MenuItem {
     this.allergens = "",
     this.nutrition = "",
     this.image = "",
+  });
+}
+
+class NewMenuItem {
+  final String name;
+  final String description;
+  final String ingredients;
+  final double rating;
+  final String cookTime;
+  final bool newitem;
+  final String qtd;
+  final String price;
+  final String allergens;
+  final String nutrition;
+  final File image;
+  final String imageurl;
+
+  NewMenuItem({
+    required this.name,
+    required this.description,
+    required this.ingredients,
+    required this.rating,
+    required this.cookTime,
+    this.newitem = false,
+    this.qtd = "",
+    this.price = "",
+    this.allergens = "",
+    this.nutrition = "",
+    required this.image,
+    required this.imageurl,
   });
 }
 
@@ -177,6 +208,10 @@ class MenuItemPage extends StatelessWidget {
     ),
   ];
 
+  static final List<NewMenuItem> newItems = [];
+
+
+
   const MenuItemPage({super.key, required this.title});
 
   @override
@@ -192,52 +227,52 @@ class MenuItemPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(5),
         child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: title == "Pratos" ? itemsPratos.length : itemsBebidas.length,
-          itemBuilder: (context, index) {
-            final item = title == "Pratos" ? itemsPratos[index] : itemsBebidas[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Hero(
-                tag: "item_${item.name}",
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => InfoPage(item: item, title: title)),
-                    );
-                  },
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    elevation: 5,
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 150,
-                          height: 150,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image(
-                              fit: BoxFit.cover,
-                              alignment: Alignment.topRight,
-                              image: AssetImage(item.image),
+            scrollDirection: Axis.vertical,
+            itemCount: title == "Pratos" ? itemsPratos.length : itemsBebidas.length,
+            itemBuilder: (context, index) {
+              final item = title == "Pratos" ? itemsPratos[index] : itemsBebidas[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Hero(
+                  tag: "item_${item.name}",
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => InfoPage(item: item, title: title)),
+                      );
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      elevation: 5,
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 150,
+                            height: 150,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Image(
+                                fit: BoxFit.cover,
+                                alignment: Alignment.topRight,
+                                image: AssetImage(item.image),
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: buildItemDetails(item),
-                        ),
-                      ],
+                          Expanded(
+                            child: buildItemDetails(item),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
-          },
-        ),
+              );
+            },
       ),
+    ),
     );
   }
 

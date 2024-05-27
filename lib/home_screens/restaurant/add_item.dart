@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tastybite/home_screens/menus/menuitemspage.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:flutter/services.dart'; 
+import 'dart:io';
 import 'package:tastybite/util/new_image.dart';
 
 
@@ -25,13 +26,22 @@ class _AddItemState extends State<AddItem> {
   double _proteins = -1.0;
   double _carbohydrates = -1.0;
   double _fats = -1.0;
-  String _image = 'assets/grelhado.jpg';
+  File _image = File('');
+  String _imageUrl = 'https://thumbs.dreamstime.com/b/image-edit-tool-outline-icon-image-edit-tool-outline-icon-linear-style-sign-mobile-concept-web-design-photo-gallery-135346318.jpg';
 
-void onImageChanged(String newValue) {
+  void onImageChanged(File newValue) {
     setState(() {
       _image = newValue;
     });
   }
+
+  void onImageChangedUrl(String newValue) {
+    setState(() {
+      _imageUrl = newValue;
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +75,7 @@ void onImageChanged(String newValue) {
             children: [
               NewImagePickerWidget(
                 onValueChanged: onImageChanged,
+                onValueChangedUrl: onImageChangedUrl,
                 edit: "",
               ),
               const SizedBox(height: 10),
@@ -230,7 +241,7 @@ void onImageChanged(String newValue) {
                     // You can now use the entered data to create a MenuItem object
                     // and pass it back to the previous page
                     // For example:
-                    final newDish = MenuItem(
+                    final newDish = NewMenuItem(
                       name: _name,
                       description: _description,
                       ingredients: _ingredients,
@@ -241,6 +252,7 @@ void onImageChanged(String newValue) {
                       allergens: _selectedAllergens.join(', '),
                       nutrition: buildNutritionString(),
                       image: _image,
+                      imageurl: _imageUrl,
                     );
                     Navigator.pop(context, newDish);  
                   }
