@@ -73,7 +73,7 @@ class PaymentMethod extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(Icons.credit_card, size: 40),
-                    Text(' Cartão', style: TextStyle(fontSize: 18)),
+                    Text(' Cartão', style: TextStyle(fontSize: 17)),
                   ],
                 ),
               ),
